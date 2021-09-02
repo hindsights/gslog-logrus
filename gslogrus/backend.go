@@ -7,8 +7,6 @@ import (
 
 func FromGSLogLevel(level gslog.LogLevel) logrus.Level {
 	switch {
-	case level <= gslog.LogLevelTrace:
-		return logrus.TraceLevel
 	case level == gslog.LogLevelDebug:
 		return logrus.DebugLevel
 	case level == gslog.LogLevelInfo:
@@ -25,8 +23,6 @@ func FromGSLogLevel(level gslog.LogLevel) logrus.Level {
 
 func ToGSLogLevel(level logrus.Level) gslog.LogLevel {
 	switch {
-	case level <= logrus.TraceLevel:
-		return gslog.LogLevelTrace
 	case level == logrus.DebugLevel:
 		return gslog.LogLevelDebug
 	case level == logrus.InfoLevel:
@@ -42,14 +38,17 @@ func ToGSLogLevel(level logrus.Level) gslog.LogLevel {
 }
 
 type logursBackend struct {
-	logger   *logrus.Logger
-	logLevel gslog.LogLevel
+	logger *logrus.Logger
 }
 
 func (backend *logursBackend) GetLogger(name string) gslog.Logger {
 	return newLogger(backend, name)
 }
 
-func NewBackend(logger *logrus.Logger, logLevel gslog.LogLevel) gslog.Backend {
+func (backend *logursBackend) GetFieldLogger(name string) gslog.FieldLogger {
+	return newSLogger(backend, name)
+}
+
+func NewBackend(logger *logrus.Logger) gslog.Backend {
 	return &logursBackend{logger: logger}
 }

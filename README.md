@@ -1,6 +1,6 @@
 # gslog-logrus
 
-gslog backedn based on logrus
+gslog backend based on logrus library
 
 ## Example
 
@@ -20,26 +20,32 @@ func main() {
 
 	logrusLogger := logrus.New()
 	logrusLogger.SetFormatter(&logrus.TextFormatter{
-		DisableColors: true,
-		FullTimestamp: true,
-		// DisableQuote:   true,
+		DisableColors:  true,
+		FullTimestamp:  true,
 		DisableSorting: true,
 	})
-	gslog.SetBackend(gslogrus.NewBackend(logrusLogger, gslog.LogLevelAll))
-	gslog.Info("gs-logrus-hello")
-	gslog.Info("start")
+	logrusLogger.SetLevel(logrus.DebugLevel)
+	gslog.SetBackend(NewBackend(logrusLogger))
+	gslog.Info("gs-hello")
+	gslog.Warn("start")
 	logger := gslog.GetLogger("app")
-	logger.Debug("debug", 1)
-	logger.Info("info", "abc")
-	logger.Warn("warn", true)
-	logger.Error("error", false)
-	logger.WithFields(gslog.Fields{"key1": 1, "key2": "val2"}).Error("field output")
-	logger.WithFields(gslog.Fields{"key1": 1, "key2": "val2"}).Errorf("field output %d", 567)
-	gslog.Debugf("debugf %s", "name")
-	gslog.Infof("infof %s", "value")
-	gslog.Warnf("warnf %d", 20)
-	gslog.Errorf("errorf %v", 100)
-	logger.Info("output to logrus")
+	flogger := gslog.GetFieldLogger("app")
+
+	flogger.Debug("debug", gslog.Fields{"integer": 1})
+	flogger.Info("info", gslog.Fields{"abc": 234})
+	flogger.Warn("warn", gslog.Fields{"bool": true})
+	flogger.Error("error", gslog.Fields{"bool": false})
+	flogger.Log(gslog.LogLevelDebug, "log debug", gslog.Fields{"value1": "value2"})
+	time.Sleep(time.Second)
+	logger.Debug("debug", "name")
+	logger.Info("info", "value")
+	logger.Warn("warn", 20)
+	logger.Error("error", 100)
+	logger.Debugf("debugf %s", "name")
+	logger.Infof("infof %s", "value")
+	logger.Warnf("warnf %d", 20)
+	logger.Errorf("errorf %v", 100)
+	time.Sleep(time.Second * 3)
 }
 
 ```

@@ -2,6 +2,8 @@ github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/hindsights/gslog v0.1.1 h1:aUi/C7QQmVTAqvtZcW3EFUJJ6InPFdu01VtVR713rVY=
 github.com/hindsights/gslog v0.1.1/go.mod h1:8WjO78RBL0Ho9gRvzifkb72sVYdyERCBOk2LHVgU6bw=
+github.com/hindsights/gslog v0.1.2 h1:bL1PMKjmEtGw9XCma1wyVsNqcKTgt1U3VhqAEA29U5s=
+github.com/hindsights/gslog v0.1.2/go.mod h1:8WjO78RBL0Ho9gRvzifkb72sVYdyERCBOk2LHVgU6bw=
 github.com/konsorten/go-windows-terminal-sequences v1.0.1 h1:mweAR1A6xJ3oS2pRaGiHgQ4OO8tzTaLawm8vnODuwDk=
 github.com/konsorten/go-windows-terminal-sequences v1.0.1/go.mod h1:T0+1ngSBFLxvqU3pZ+m/2kptfBszLMUkC4ZK/EgS/cQ=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
