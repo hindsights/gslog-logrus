@@ -1,10 +1,3 @@
-# gslog-logrus
-
-gslog backend based on logrus library
-
-## Example
-
-```go
 package main
 
 import (
@@ -48,5 +41,3 @@ func main() {
 	logger.Errorf("errorf %v", 100)
 	time.Sleep(time.Second * 3)
 }
-
-```
