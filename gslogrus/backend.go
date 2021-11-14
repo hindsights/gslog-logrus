@@ -42,11 +42,11 @@ type logursBackend struct {
 }
 
 func (backend *logursBackend) GetLogger(name string) gslog.Logger {
-	return newLogger(backend, name)
+	return newFieldLogger(backend, name)
 }
 
-func (backend *logursBackend) GetFieldLogger(name string) gslog.FieldLogger {
-	return newSLogger(backend, name)
+func (backend *logursBackend) GetSimpleLogger(name string) gslog.SimpleLogger {
+	return newSimpleLogger(backend, name)
 }
 
 func NewBackend(logger *logrus.Logger) gslog.Backend {
