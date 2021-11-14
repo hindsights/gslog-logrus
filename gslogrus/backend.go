@@ -45,8 +45,8 @@ func (backend *logursBackend) GetLogger(name string) gslog.Logger {
 	return newFieldLogger(backend, name)
 }
 
-func (backend *logursBackend) GetSimpleLogger(name string) gslog.SimpleLogger {
-	return newSimpleLogger(backend, name)
+func (backend *logursBackend) GetSugaredLogger(name string) gslog.SugaredLogger {
+	return newSugaredLogger(backend, name)
 }
 
 func NewBackend(logger *logrus.Logger) gslog.Backend {

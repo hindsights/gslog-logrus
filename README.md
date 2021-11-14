@@ -29,7 +29,7 @@ func main() {
 	gslog.SetBackend(gslogrus.NewBackend(logrusLogger))
 	gslog.Info("gs-hello")
 	gslog.Warn("start")
-	logger := gslog.GetSimpleLogger("app")
+	logger := gslog.GetSugaredLogger("app")
 	flogger := gslog.GetLogger("app")
 
 	flogger.Int("int", 1).Debug("debug")

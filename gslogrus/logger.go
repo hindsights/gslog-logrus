@@ -128,21 +128,21 @@ func (logger fieldLogger) Duration(key string, val time.Duration) gslog.Logger {
 	return logger.Field(key, val)
 }
 
-type simpleLogger struct {
+type sugaredLogger struct {
 	backend *logursBackend
 	name    string
 	entry   *logrus.Entry
 }
 
-func newSimpleLogger(backend *logursBackend, name string) gslog.SimpleLogger {
-	return simpleLogger{
+func newSugaredLogger(backend *logursBackend, name string) gslog.SugaredLogger {
+	return sugaredLogger{
 		backend: backend,
 		name:    name,
 		entry:   backend.logger.WithField("ctx", name),
 	}
 }
 
-func (logger simpleLogger) prepareArgs(args []interface{}) []interface{} {
+func (logger sugaredLogger) prepareArgs(args []interface{}) []interface{} {
 	if len(args) == 0 {
 		return nil
 	}
@@ -157,7 +157,7 @@ func (logger simpleLogger) prepareArgs(args []interface{}) []interface{} {
 	return newArgs
 }
 
-func (logger simpleLogger) doLog(level gslog.LogLevel, f func(...interface{}), args ...interface{}) {
+func (logger sugaredLogger) doLog(level gslog.LogLevel, f func(...interface{}), args ...interface{}) {
 	if !logger.NeedLog(level) {
 		return
 	}
@@ -165,67 +165,67 @@ func (logger simpleLogger) doLog(level gslog.LogLevel, f func(...interface{}), a
 	f(newArgs...)
 }
 
-func (logger simpleLogger) doLogf(level gslog.LogLevel, f func(string, ...interface{}), format string, args ...interface{}) {
+func (logger sugaredLogger) doLogf(level gslog.LogLevel, f func(string, ...interface{}), format string, args ...interface{}) {
 	if !logger.NeedLog(level) {
 		return
 	}
 	f(format, args...)
 }
 
-func (logger simpleLogger) NeedLog(level gslog.LogLevel) bool {
+func (logger sugaredLogger) NeedLog(level gslog.LogLevel) bool {
 	return logger.backend.logger.IsLevelEnabled(FromGSLogLevel(level))
 }
 
-func (logger simpleLogger) Logf(level gslog.LogLevel, format string, args ...interface{}) {
+func (logger sugaredLogger) Logf(level gslog.LogLevel, format string, args ...interface{}) {
 	if !logger.NeedLog(level) {
 		return
 	}
 	logger.entry.Logf(FromGSLogLevel(level), format, args...)
 }
 
-func (logger simpleLogger) Log(level gslog.LogLevel, args ...interface{}) {
+func (logger sugaredLogger) Log(level gslog.LogLevel, args ...interface{}) {
 	if !logger.NeedLog(level) {
 		return
 	}
 	logger.entry.Log(FromGSLogLevel(level), args...)
 }
 
-func (logger simpleLogger) Debug(args ...interface{}) {
+func (logger sugaredLogger) Debug(args ...interface{}) {
 	logger.doLog(gslog.LogLevelDebug, logger.entry.Debug, args...)
 }
 
-func (logger simpleLogger) Info(args ...interface{}) {
+func (logger sugaredLogger) Info(args ...interface{}) {
 	logger.doLog(gslog.LogLevelInfo, logger.entry.Info, args...)
 }
 
-func (logger simpleLogger) Warn(args ...interface{}) {
+func (logger sugaredLogger) Warn(args ...interface{}) {
 	logger.doLog(gslog.LogLevelWarn, logger.entry.Warn, args...)
 }
 
-func (logger simpleLogger) Error(args ...interface{}) {
+func (logger sugaredLogger) Error(args ...interface{}) {
 	logger.doLog(gslog.LogLevelError, logger.entry.Error, args...)
 }
 
-func (logger simpleLogger) Fatal(args ...interface{}) {
+func (logger sugaredLogger) Fatal(args ...interface{}) {
 	logger.doLog(gslog.LogLevelFatal, logger.entry.Fatal, args...)
 }
 
-func (logger simpleLogger) Debugf(format string, args ...interface{}) {
+func (logger sugaredLogger) Debugf(format string, args ...interface{}) {
 	logger.doLogf(gslog.LogLevelDebug, logger.entry.Debugf, format, args...)
 }
 
-func (logger simpleLogger) Infof(format string, args ...interface{}) {
+func (logger sugaredLogger) Infof(format string, args ...interface{}) {
 	logger.doLogf(gslog.LogLevelInfo, logger.entry.Infof, format, args...)
 }
 
-func (logger simpleLogger) Warnf(format string, args ...interface{}) {
+func (logger sugaredLogger) Warnf(format string, args ...interface{}) {
 	logger.doLogf(gslog.LogLevelWarn, logger.entry.Warnf, format, args...)
 }
 
-func (logger simpleLogger) Errorf(format string, args ...interface{}) {
+func (logger sugaredLogger) Errorf(format string, args ...interface{}) {
 	logger.doLogf(gslog.LogLevelError, logger.entry.Errorf, format, args...)
 }
 
-func (logger simpleLogger) Fatalf(format string, args ...interface{}) {
+func (logger sugaredLogger) Fatalf(format string, args ...interface{}) {
 	logger.doLogf(gslog.LogLevelFatal, logger.entry.Fatalf, format, args...)
 }

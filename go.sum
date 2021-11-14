@@ -10,6 +10,8 @@ github.com/hindsights/gslog v0.1.4-0.20211114083948-5ee3e348cc72 h1:GOm0rrHAsPeQ
 github.com/hindsights/gslog v0.1.4-0.20211114083948-5ee3e348cc72/go.mod h1:8WjO78RBL0Ho9gRvzifkb72sVYdyERCBOk2LHVgU6bw=
 github.com/hindsights/gslog v0.1.4 h1:EFsHYgI66m0mmZu4F30mMS9u3lktcMYHbSEn5Fy7frE=
 github.com/hindsights/gslog v0.1.4/go.mod h1:8WjO78RBL0Ho9gRvzifkb72sVYdyERCBOk2LHVgU6bw=
+github.com/hindsights/gslog v0.1.5 h1:eWBHDidCyakLk1qAMbyOCn7BJ/CT1f/vSDi8x5I+gVA=
+github.com/hindsights/gslog v0.1.5/go.mod h1:8WjO78RBL0Ho9gRvzifkb72sVYdyERCBOk2LHVgU6bw=
 github.com/konsorten/go-windows-terminal-sequences v1.0.1 h1:mweAR1A6xJ3oS2pRaGiHgQ4OO8tzTaLawm8vnODuwDk=
 github.com/konsorten/go-windows-terminal-sequences v1.0.1/go.mod h1:T0+1ngSBFLxvqU3pZ+m/2kptfBszLMUkC4ZK/EgS/cQ=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
